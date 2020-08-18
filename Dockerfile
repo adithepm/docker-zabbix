@@ -1,15 +1,13 @@
 # Version 2.3
 
-FROM centos:centos6
+FROM centos:centos7
 MAINTAINER Adithep Kitraktam <adithepm@gmail.com>
 ENV REFRESHED_AT 2020-08-18
 
 # Install EPEL to have MySQL packages.
 RUN yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 # Install Zabbix release packages.
-RUN yum install -y --disableplugin=subscription-manager --disablerepo "*" \
-    https://repo.zabbix.com/zabbix/${MAJOR_VERSION}/rhel/8/x86_64/zabbix-release-${MAJOR_VERSION}-1.el8.noarch.rpm && \
-    REPOLIST="rhel-8-for-x86_64-baseos-rpms,rhel-8-for-x86_64-appstream-rpms,zabbix-non-supported,nginx-stable" &&
+RUN yum install -y http://repo.zabbix.com/zabbix/4.0/rhel/8/x86_64/zabbix-release-4.0-2.el8.noarch.rpm
 # Refresh
 RUN yum makecache
 # Installing Tools.
